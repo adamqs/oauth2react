@@ -1,7 +1,32 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
+import styled from "styled-components";
 import { apiBaseUrl, apiVersion } from "../../settings";
 // import queryString from "query-string";
 import LoansDisplay from "./LoansDisplay";
+
+const Wrapper = styled.div`
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: center;
+  /* border: solid 1px black; */
+  padding-top: 1em;
+`;
+
+const ControlsWrapper = styled.div`
+  width: 270px;
+`;
+
+const Pre = styled.pre`
+  background-color: #f1fffa;
+  border: solid 1px darkgray;
+`;
+
+const ButtonsWrapper = styled.div`
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: stretch;
+  justify-content: space-between;
+`;
 
 const CirqaOA = props => {
   let [fData, setFData] = useState("...loading");
@@ -50,28 +75,25 @@ const CirqaOA = props => {
   };
 
   return (
-    <div className="wrapper">
-      <div className="controls">
-        <pre
-          style={{
-            backgroundColor: "gray",
-            border: "solid 1px darkgray"
-          }}
-        >
-          {fData}
-        </pre>
-        <button className="btn btn-primary" onClick={log}>
-          Log
-        </button>
-        <button className="btn btn-secondary" onClick={test}>
-          test connection
-        </button>
-        <button className="btn btn-success" onClick={checkUserData}>
-          Check Loans
-        </button>
-      </div>
+    <Wrapper>
+      <ControlsWrapper>
+        <div className="controls">
+          <Pre> >{fData}</Pre>
+          <ButtonsWrapper>
+            <button className="btn btn-outline-primary" onClick={log}>
+              Log
+            </button>
+            <button className="btn btn-outline-secondary" onClick={test}>
+              test connection
+            </button>
+            <button className="btn btn-outline-success" onClick={checkUserData}>
+              Loans
+            </button>
+          </ButtonsWrapper>
+        </div>
+      </ControlsWrapper>
       <LoansDisplay loansList={loans} />
-    </div>
+    </Wrapper>
   );
 };
 

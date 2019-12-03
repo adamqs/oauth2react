@@ -3,13 +3,14 @@ import { settings } from "../../settings";
 
 function randomString(length) {
   let charset =
-    "0123456789ABCDEFGHIJKLMNOPQRSTUVXYZabcdefghijklmnopqrstuvwxyz-._";
+    "0123456789ABCDEFGHIJKLMNOPQRSTUVXYZabcdefghijklmnopqrstuvwxyz_";
   let result = "";
 
   while (length > 0) {
     let bytes = new Uint8Array(16);
     let random = window.crypto.getRandomValues(bytes);
 
+    // eslint-disable-next-line
     random.forEach(function(c) {
       if (length === 0) {
         return;
@@ -22,9 +23,6 @@ function randomString(length) {
   }
   return result;
 }
-
-let nonce = randomString(16);
-console.log(nonce);
 
 let url =
   settings.authority +
@@ -40,14 +38,14 @@ let url =
   "&" +
   "scope=" +
   encodeURI(settings.scope) +
+  "&state=RANDOM_STATE" +
   "&nonce=" +
-  randomString(36);
+  "WHOOPER";
+// randomString(36);
 // "&nonce=83029fd3a728469e8f63a55f718eaa77";
 
 const LoginComponent = () => {
-  useState(() => {
-    console.log("useState triggered");
-  }, []);
+  useState(() => {}, []);
 
   const logIn = () => {
     console.log(url);
@@ -55,7 +53,7 @@ const LoginComponent = () => {
   };
   return (
     <div>
-      <p>Login</p>
+      <p>Cirqa OAuth2</p>
       <button className="btn btn-primary" onClick={logIn}>
         login
       </button>

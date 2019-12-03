@@ -10,6 +10,7 @@ const OAuthRouter = () => {
     let tempQuery = queryString.parse(window.location.href);
     if (typeof tempQuery === "object") {
       console.log(tempQuery.access_token);
+      console.log(JSON.stringify(tempQuery));
       setToken(tempQuery.access_token);
     } else {
       setToken(false);
