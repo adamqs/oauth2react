@@ -73,7 +73,7 @@ const CirqaOA = props => {
         setLoans(data.loansCollection.collection);
       })
       .catch(er => {
-        console.log(`An error has occured sir! Here are some details: ${err}`);
+        console.log(`An error has occured sir! Here are some details: ${er}`);
       });
   };
 
