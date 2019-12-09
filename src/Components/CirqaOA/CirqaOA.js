@@ -71,6 +71,9 @@ const CirqaOA = props => {
         console.log(data);
         setFData("loaded");
         setLoans(data.loansCollection.collection);
+      })
+      .catch(er => {
+        console.log(`An error has occured sir! Here are some details: ${err}`);
       });
   };
 
