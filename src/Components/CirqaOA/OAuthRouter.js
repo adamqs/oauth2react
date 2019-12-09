@@ -9,9 +9,14 @@ const OAuthRouter = () => {
   useEffect(() => {
     let tempQuery = queryString.parse(window.location.href);
     if (typeof tempQuery === "object") {
-      console.log(tempQuery.access_token);
-      console.log(JSON.stringify(tempQuery));
+      console.log(tempQuery);
       setToken(tempQuery.access_token);
+      if (
+        window.sessionStorage !== {} &&
+        window.sessionStorage !== { token: "undefined" }
+      ) {
+        window.sessionStorage.setItem("token", tempQuery.access_token);
+      }
     } else {
       setToken(false);
       console.log("invalid token");

@@ -24,7 +24,7 @@ const LoansDisplay = props => {
     <ListWrapper>
       <ul>
         {props.loansList.map(loan => (
-          <ListElement>
+          <ListElement key={loan.id}>
             <p>AccNo: {loan.accno}</p>
             <p>Author: {loan.authorapi}</p>
             <p>Title: {loan.titlesort}</p>

@@ -40,7 +40,7 @@ let url =
   encodeURI(settings.scope) +
   "&state=RANDOM_STATE" +
   "&nonce=" +
-  "WHOOPER";
+  randomString(36);
 // randomString(36);
 // "&nonce=83029fd3a728469e8f63a55f718eaa77";
 
