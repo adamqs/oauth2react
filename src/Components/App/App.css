@@ -6,16 +6,16 @@
   height: 40vmin;
 }
 
-.App-header {
+.App-body {
   /* background-color: #282c34; */
-  background-color: #c0d6df;
+  background-color: #a0c0ce;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   font-size: calc(10px + 2vmin);
-  color: white;
+  color: #f1fffa;
 }
 
 .App-link {
