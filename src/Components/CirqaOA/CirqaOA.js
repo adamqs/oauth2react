@@ -42,14 +42,13 @@ const CirqaOA = props => {
     console.log("useEffect triggered");
   }, []);
 
-  const log = () => {
+  const saveToken = () => {
+    console.log("save token :" + token);
     window.localStorage.setItem("token", token);
   };
 
-  const test = () => {
-    const myToken = window.localStorage.getItem("token");
-    console.log(window.localStorage);
-    console.log(myToken);
+  const getToken = () => {
+    setToken(window.localStorage.getItem("token"));
   };
 
   const checkUserData = () => {
@@ -95,11 +94,11 @@ const CirqaOA = props => {
           </Pre>
           <Pre> >{fData}</Pre>
           <ButtonsWrapper>
-            <button className="btn btn-outline-primary" onClick={log}>
-              Log
-            </button>
-            <button className="btn btn-outline-secondary" onClick={test}>
+            <button className="btn btn-outline-primary" onClick={saveToken}>
               Save Token
+            </button>
+            <button className="btn btn-outline-secondary" onClick={getToken}>
+              Get Token
             </button>
             <button className="btn btn-outline-success" onClick={checkUserData}>
               Fetch Loans
