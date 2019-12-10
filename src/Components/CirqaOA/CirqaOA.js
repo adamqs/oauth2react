@@ -1,7 +1,7 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import { apiBaseUrl, apiVersion } from "../../settings";
-// import queryString from "query-string";
+import queryString from "query-string";
 import LoansDisplay from "./LoansDisplay";
 
 const Wrapper = styled.div`
@@ -29,40 +29,38 @@ const ButtonsWrapper = styled.div`
 `;
 
 const CirqaOA = props => {
+  let [token, setToken] = useState(false);
   let [fData, setFData] = useState("...loading");
   let [loans, setLoans] = useState([]);
 
-  // useEffect(() => {
-  //   let tempQuery = queryString.parse(window.location.href);
-  //   if (typeof tempQuery === "object") {
-  //     console.log(tempQuery.access_token);
-  //     setToken(tempQuery.access_token);
-  //   } else {
-  //     console.log("invalid token");
-  //   }
-  //   console.log("effect");
-  // }, []);
+  useEffect(() => {
+    let tempQuery = queryString.parse(window.location.href);
+    if (typeof tempQuery === "object") {
+      console.log(tempQuery);
+      setToken(tempQuery.access_token);
+    }
+    console.log("useEffect triggered");
+  }, []);
 
   const log = () => {
-    console.log(props.token);
+    window.localStorage.setItem("token", token);
   };
 
   const test = () => {
-    fetch("http://kima:56778/CirqaIdentity/csp/report", {
-      method: "POST"
-    })
-      .then(response => response.json())
-      .then(data => {
-        console.log("fetched: ");
-        console.log(data);
-      });
+    const myToken = window.localStorage.getItem("token");
+    console.log(window.localStorage);
+    console.log(myToken);
   };
 
   const checkUserData = () => {
+    if (!token) {
+      setFData("token missing");
+      return;
+    }
     let uri = `${apiBaseUrl}/${apiVersion}/readers/r0009/loans`;
     console.log(uri);
     fetch(uri, {
-      headers: { Authorization: "Bearer " + props.token },
+      headers: { Authorization: "Bearer " + token },
       method: "GET",
       dataType: "json"
     })
@@ -77,20 +75,37 @@ const CirqaOA = props => {
       });
   };
 
+  const logout = () => {
+    if (token) {
+      window.location =
+        "http://kima:56778/CirqaIdentity/connect/endsession?id_token_hint=" +
+        token;
+    } else {
+      setFData("Cannot logout without a token");
+    }
+  };
+
   return (
     <Wrapper>
       <ControlsWrapper>
         <div className="controls">
+          <Pre>
+            window.sessionStorage object -_
+            <span>{JSON.stringify(window.sessionStorage)}</span>
+          </Pre>
           <Pre> >{fData}</Pre>
           <ButtonsWrapper>
             <button className="btn btn-outline-primary" onClick={log}>
               Log
             </button>
             <button className="btn btn-outline-secondary" onClick={test}>
-              test connection
+              Save Token
             </button>
             <button className="btn btn-outline-success" onClick={checkUserData}>
-              Loans
+              Fetch Loans
+            </button>
+            <button className="btn btn-outline-danger" onClick={logout}>
+              Logout
             </button>
           </ButtonsWrapper>
         </div>

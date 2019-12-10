@@ -4,8 +4,10 @@ import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 // import OAuthComponent from "./Components/OAuth2";
 // import SpotifyComponent from "./Components/SpotifyComponent/SpotifyComponent";
-import OAuthRouter from "../CirqaOA/OAuthRouter";
+// import OAuthRouter from "../CirqaOA/OAuthRouter";
 import Header from "../Header/Header";
+import CirqaOA from "../CirqaOA/CirqaOA";
+import LoginComponent from "../CirqaOA/LoginComponent";
 
 function App() {
   return (
@@ -13,13 +15,15 @@ function App() {
       <Router>
         <Header />
         <header className="App-body">
-          <p>
-            window.sessionStorage object -_
-            <span>{JSON.stringify(window.sessionStorage)}</span>
-          </p>
           <Switch>
             <Route path="/popup.html">
-              <OAuthRouter />
+              <CirqaOA />
+            </Route>
+            <Route path="/cirqa_oa">
+              <CirqaOA />
+            </Route>
+            <Route path="/login">
+              <LoginComponent />
             </Route>
           </Switch>
         </header>

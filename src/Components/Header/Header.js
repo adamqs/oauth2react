@@ -43,7 +43,8 @@ const Header = () => {
       </Logo>
       <NavButtons>
         <Link to="/" name="Landing" />
-        <Link to="/popup.html" name="Login Page" />
+        <Link to="/popup.html" name="CirqaOAuth" />
+        <Link to="/login" name="Login Page" />
       </NavButtons>
     </HeaderStyling>
   );

@@ -11,15 +11,6 @@ const OAuthRouter = () => {
     if (typeof tempQuery === "object") {
       console.log(tempQuery);
       setToken(tempQuery.access_token);
-      if (
-        window.sessionStorage !== {} &&
-        window.sessionStorage !== { token: "undefined" }
-      ) {
-        window.sessionStorage.setItem("token", tempQuery.access_token);
-      }
-    } else {
-      setToken(false);
-      console.log("invalid token");
     }
     console.log("useEffect triggered");
   }, []);
