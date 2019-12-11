@@ -24,9 +24,16 @@ const NavButtons = styled.div`
 `;
 
 const StyledLink = styled.div`
-  font-size: 1em;
-  color: pink;
-  padding-left: 10px;
+  & a {
+    color: #7a82ab;
+    font-size: 1em;
+    font-weight: bold;
+    padding-left: 10px;
+    text-decoration: none;
+  }
+  & a:hover {
+    color: #c0d6df;
+  }
 `;
 
 const Link = ({ to, name }) => (
