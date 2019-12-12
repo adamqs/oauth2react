@@ -23,6 +23,7 @@ const NavButtons = styled.div`
   justify-content: space-between;
 `;
 
+// overriding bootstrap styling for <a> using styled components
 const StyledLink = styled.div`
   & a {
     color: #7a82ab;

@@ -3,6 +3,7 @@ import styled from "styled-components";
 import { apiBaseUrl, apiVersion } from "../../settings";
 import queryString from "query-string";
 import LoansDisplay from "./LoansDisplay";
+import SwitchComponent from "../SwitchComponent/SwitchComponent";
 
 const Wrapper = styled.div`
   display: flex;
@@ -32,6 +33,7 @@ const CirqaOA = props => {
   let [token, setToken] = useState(false);
   let [fData, setFData] = useState("...loading");
   let [loans, setLoans] = useState([]);
+  let [checkboxState, setCheckboxState] = useState(false);
 
   useEffect(() => {
     let tempQuery = queryString.parse(window.location.href);
@@ -84,13 +86,21 @@ const CirqaOA = props => {
     }
   };
 
+  const handleCheckboxChange = () => {
+    setCheckboxState(!checkboxState);
+  };
+
   return (
     <Wrapper>
       <ControlsWrapper>
         <div className="controls">
+          <SwitchComponent
+            checked={checkboxState}
+            handleCheckboxChange={handleCheckboxChange}
+          />
           <Pre>
             window.sessionStorage object -_
-            <span>{JSON.stringify(window.sessionStorage)}</span>
+            <span>{JSON.stringify(window.localStorage)}</span>
           </Pre>
           <Pre> >{fData}</Pre>
           <ButtonsWrapper>
