@@ -17,7 +17,7 @@ export const settings = {
   // filterProtocolClaims: true
 };
 
-export const loginURL =
+export let loginURL =
   settings.authority +
   "?" +
   "client_id=" +

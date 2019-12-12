@@ -14,7 +14,7 @@ const Wrapper = styled.div`
 `;
 
 const ControlsWrapper = styled.div`
-  width: 370px;
+  width: 380px;
 `;
 
 const Pre = styled.pre`
@@ -34,12 +34,21 @@ const CirqaOA = props => {
   let [fData, setFData] = useState("...loading");
   let [loans, setLoans] = useState([]);
   let [checkboxState, setCheckboxState] = useState(false);
+  let [sessionState, setSessionState] = useState("unchecked");
 
   useEffect(() => {
     let tempQuery = queryString.parse(window.location.href);
     if (typeof tempQuery === "object") {
       console.log(tempQuery);
+
       setToken(tempQuery.access_token);
+
+      if ("state" in tempQuery) {
+        setSessionState(
+          tempQuery.state === "checked" ? "checked" : "unchecked"
+        );
+        setCheckboxState(tempQuery.state === "checked" ? true : false);
+      }
     }
     console.log("useEffect triggered");
   }, []);
@@ -77,7 +86,9 @@ const CirqaOA = props => {
   };
 
   const login = () => {
-    window.location = loginURL;
+    let newLoginURL = loginURL.replace("RANDOM_STATE", sessionState);
+    window.location = newLoginURL;
+    // console.log(newLoginURL);
   };
 
   const logout = () => {
@@ -91,7 +102,9 @@ const CirqaOA = props => {
   };
 
   const handleCheckboxChange = () => {
-    setCheckboxState(!checkboxState);
+    let newSessionState = !checkboxState;
+    setCheckboxState(newSessionState);
+    setSessionState(newSessionState ? "checked" : "unchecked");
   };
 
   return (
@@ -102,6 +115,10 @@ const CirqaOA = props => {
             checked={checkboxState}
             handleCheckboxChange={handleCheckboxChange}
           />
+          <Pre>
+            Session: {sessionState},_Checkbox:{" "}
+            {checkboxState ? "true" : "false"}
+          </Pre>
           <Pre>
             window.sessionStorage object -_
             <span>{JSON.stringify(window.localStorage)}</span>
