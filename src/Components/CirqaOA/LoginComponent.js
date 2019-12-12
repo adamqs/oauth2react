@@ -45,8 +45,6 @@ let url =
 // "&nonce=83029fd3a728469e8f63a55f718eaa77";
 
 const LoginComponent = () => {
-  useState(() => {}, []);
-
   const logIn = () => {
     console.log(url);
     window.location = url;

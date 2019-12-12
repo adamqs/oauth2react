@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
-import { apiBaseUrl, apiVersion } from "../../settings";
+import { apiBaseUrl, apiVersion, loginURL } from "../../settings";
 import queryString from "query-string";
 import LoansDisplay from "./LoansDisplay";
 import SwitchComponent from "../SwitchComponent/SwitchComponent";
@@ -14,7 +14,7 @@ const Wrapper = styled.div`
 `;
 
 const ControlsWrapper = styled.div`
-  width: 270px;
+  width: 370px;
 `;
 
 const Pre = styled.pre`
@@ -76,6 +76,10 @@ const CirqaOA = props => {
       });
   };
 
+  const login = () => {
+    window.location = loginURL;
+  };
+
   const logout = () => {
     if (token) {
       window.location =
@@ -104,14 +108,17 @@ const CirqaOA = props => {
           </Pre>
           <Pre> >{fData}</Pre>
           <ButtonsWrapper>
-            <button className="btn btn-outline-primary" onClick={saveToken}>
+            <button className="btn btn-outline-secondary" onClick={saveToken}>
               Save Token
             </button>
-            <button className="btn btn-outline-secondary" onClick={getToken}>
+            <button className="btn btn-outline-dark" onClick={getToken}>
               Get Token
             </button>
             <button className="btn btn-outline-success" onClick={checkUserData}>
               Fetch Loans
+            </button>
+            <button className="btn btn-outline-primary" onClick={login}>
+              Login
             </button>
             <button className="btn btn-outline-danger" onClick={logout}>
               Logout

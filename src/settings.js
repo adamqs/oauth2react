@@ -17,5 +17,24 @@ export const settings = {
   // filterProtocolClaims: true
 };
 
+export const loginURL =
+  settings.authority +
+  "?" +
+  "client_id=" +
+  encodeURI(settings.client_id) +
+  "&" +
+  "redirect_uri=" +
+  encodeURI(settings.redirect_uri) +
+  "&" +
+  "response_type=" +
+  encodeURI(settings.response_type) +
+  "&" +
+  "scope=" +
+  encodeURI(settings.scope) +
+  "&state=RANDOM_STATE" +
+  "&nonce=" +
+  // randomString(36);
+  "83029fd3a728469e8f63a55f718eaa77";
+
 // before running npm start
 //export port=58658
