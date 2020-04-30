@@ -35,6 +35,9 @@ const CirqaOA = props => {
   let [loans, setLoans] = useState([]);
   let [checkboxState, setCheckboxState] = useState(false);
   let [sessionState, setSessionState] = useState("unchecked");
+  let [localStorage, setLocalStorage] = useState(
+    JSON.stringify(window.localStorage)
+  );
 
   useEffect(() => {
     let tempQuery = queryString.parse(window.location.href);
@@ -56,6 +59,7 @@ const CirqaOA = props => {
   const saveToken = () => {
     console.log("save token :" + token);
     window.localStorage.setItem("token", token);
+    setLocalStorage(token);
   };
 
   const getToken = () => {
@@ -120,8 +124,8 @@ const CirqaOA = props => {
             {checkboxState ? "true" : "false"}
           </Pre>
           <Pre>
-            window.sessionStorage object -_
-            <span>{JSON.stringify(window.localStorage)}</span>
+            window.localStorage object -_
+            <span>{localStorage}</span>
           </Pre>
           <Pre> >{fData}</Pre>
           <ButtonsWrapper>

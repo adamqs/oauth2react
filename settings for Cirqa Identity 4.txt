@@ -1,0 +1,29 @@
+      if (profile == "matt-console2") {
+            apiBaseUrl = 'http://localhost:56777/CirqaApi';
+            identityBaseUrl = 'http://localhost:44324';
+        }
+        else if (profile == "matt-console") {
+            apiBaseUrl = 'http://localhost:56777/CirqaApi';
+            identityBaseUrl = 'Http://localhost:56778/CirqaidentitY';
+        }
+        else if (profile == "matt-iis") {
+            apiBaseUrl = 'http://localhost:56776';
+            identityBaseUrl = 'http://localhost:56778';
+        }
+        else if (profile == "adampde") {
+            //apiBaseUrl = 'http://localhost:56777/CirqaApi';
+            apiBaseUrl = 'https://adampde.cirqahosting.com/CirqaApi';
+            identityBaseUrl = 'https://adampde.cirqahosting.com/ProtoIdentity';
+        }
+        else if (profile == "kima-console") {
+            apiBaseUrl = 'http://kima:56777/CirqaApi';
+            identityBaseUrl = 'http://kima:56778/CirqaIdentity';
+        }
+
+
+ else if (profile == "adampde") {
+            //apiBaseUrl = 'http://localhost:56777/CirqaApi';
+            apiBaseUrl = 'https://adampde.cirqahosting.com/CirqaApi';
+            identityBaseUrl = 'https://adampde.cirqahosting.com/ProtoIdentity';
+        }
+
